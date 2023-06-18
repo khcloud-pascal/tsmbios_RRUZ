@@ -1,0 +1,11 @@
+backup/
+lib/
+*.exe
+*.zip
+*.rar
+*.7z
+*.gz
+*.o
+*.ppu
+*.compiled
+

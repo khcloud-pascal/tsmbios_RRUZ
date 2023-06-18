@@ -51,7 +51,28 @@ interface
 uses
  SysUtils,
  {$IFDEF MSWINDOWS}
- AnsiStrings,
+{
+ÏÂÃæAnsiStringsÊÇDelphi2009+°æ±¾²ÅÓÐÓÃ£¬ËùÒÔÔö¼ÓDelphi°æ±¾ÅÐ¶Ï
+²Î¿¼£ºhttps://forum.lazarus.freepascal.org/index.php/topic,56598.0.html
+
+Delphi 10.1 Berlin  - 31
+Delphi XE3  - 24
+Delphi XE2  - 23
+Delphi XE   - 22
+Delphi 2010 - 21
+Delphi 2009 - 20
+Delphi 2007 - 18.5
+Delphi 2006 - 18
+Delphi 2005 - 17
+Delphi 8    - 16
+Delphi 7    - 15
+Delphi 6    - 14
+}
+  {$IFNDEF FPC}
+    {$IF CompilerVersion >= 20}
+        AnsiStrings,
+    {$ENDIF}
+  {$ENDIF}
  Windows,
  {$ENDIF}
  {$IFNDEF NOGENERICS}
@@ -493,13 +514,13 @@ type
   { $REGION 'Documentation' }
   /// <summary>
   /// the information in this structure defines attributes of a system
-  /// baseboard (for  example, a motherboard, planar, server blade, or other
+  /// baseboard (forexample, a motherboard, planar, server blade, or other
   /// standard system module). 850 NOTE: If more than one Type 2 structure is
   /// provided by an SMBIOS implementation, each structure shall include the
   /// Number of Contained Object Handles and Contained Object Handles fields
-  /// to specify which system elements are  contained on which boards. If a
+  /// to specify which system elements arecontained on which boards. If a
   /// single Type 2 structure is provided and the contained object
-  /// information is not  present1, or if no Type 2 structure is provided,
+  /// information is notpresent1, or if no Type 2 structure is provided,
   /// then all system elements identified by the SMBIOS implementation are
   /// associated with a single motherboard.
   /// </summary>
@@ -1039,7 +1060,7 @@ type
   /// One Memory Module Information structure is included for each
   /// memory-module socket in the system. The structure describes the speed,
   /// type, size, and error status of each system memory module. The
-  /// supported attributes of each module are described by the “owning”
+  /// supported attributes of each module are described by the “owning
   /// Memory Controller Information structure.
   /// </summary>
   { $ENDREGION }
@@ -1048,7 +1069,7 @@ type
 
     { $REGION 'Documentation' }
     /// <summary>
-    /// String number for reference designation EXAMPLE: ‘J202’,0
+    /// String number for reference designation EXAMPLE: ‘J2020
     /// </summary>
     /// <remarks>
     /// 2.0+
@@ -1963,7 +1984,7 @@ type
     { $REGION 'Documentation' }
     /// <summary>
     /// The Slot ID field of the System Slot structure provides a mechanism
-    /// to correlate the physical attributes of  the slot to its logical
+    /// to correlate the physical attributes ofthe slot to its logical
     /// access method (which varies based on the Slot Type field).
     /// </summary>
     /// <remarks>
@@ -2093,7 +2114,7 @@ type
 
   { $REGION 'Documentation' }
   /// <summary>
-  /// This structure contains free-form strings defined by the OEM.  Examples
+  /// This structure contains free-form strings defined by the OEM.Examples
   /// of this are part numbers for system reference documents, contact
   /// information for the manufacturer, etc.
   /// </summary>
@@ -3839,7 +3860,7 @@ type
     public
       { $REGION 'Documentation' }
       /// <summary>
-      /// Default constructor, used for populate the TSMBIOS class  using the
+      /// Default constructor, used for populate the TSMBIOS classusing the
       /// current mode selected (WMI or WinApi)
       /// </summary>
       { $ENDREGION }
@@ -4038,7 +4059,10 @@ type
 const
   SMBIOS_ANCHOR_STRING_VALUE = $5F4D535F;
   // '_DMI_'
-  SMBIOS_INTERMEDIATE_ANCHOR_STRING_VALUE = [$5F, $44, $4D, $49, $5F];
+  //ÏÂÃæÕâÐÐ»á³ö´í£¬¶øÇÒÃ»ÓÐÓÃµ½£¬ËùÒÔ×¢ÊÍµô£¬²Î¿¼£º
+  //   https://github.com/RRUZ/tsmbios/issues/15
+  //   https://forum.lazarus.freepascal.org/index.php?topic=41208.0
+  //SMBIOS_INTERMEDIATE_ANCHOR_STRING_VALUE = [$5F, $44, $4D, $49, $5F];
 
 function GetBit(const AValue: DWORD; const Bit: Byte): Boolean;
 begin
@@ -5620,27 +5644,27 @@ begin
       10 :
         Result := '80487';
       11 :
-        Result := 'Intel® Pentium® processor';
+        Result := 'IntelPentiumprocessor';
       12 :
-        Result := 'Pentium® Pro processor';
+        Result := 'PentiumPro processor';
       13 :
-        Result := 'Pentium® II processor';
+        Result := 'PentiumII processor';
       14 :
-        Result := 'Pentium® processor with MMX technology';
+        Result := 'Pentiumprocessor with MMX technology';
       15 :
-        Result := 'Intel® Celeron® processor';
+        Result := 'IntelCeleronprocessor';
       16 :
-        Result := 'Pentium® II Xeon processor';
+        Result := 'PentiumII Xeon processor';
       17 :
-        Result := 'Pentium® III processor';
+        Result := 'PentiumIII processor';
       18 :
         Result := 'M1 Family';
       19 :
         Result := 'M2 Family';
       20 :
-        Result := 'Intel® Celeron® M processor';
+        Result := 'IntelCeleronM processor';
       21 :
-        Result := 'Intel® Pentium® 4 HT processor';
+        Result := 'IntelPentium4 HT processor';
       22 .. 23 :
         Result := 'Available for assignment';
       24 :
@@ -5676,13 +5700,13 @@ begin
       39 :
         Result := 'Power PC 750';
       40 :
-        Result := 'Intel® Core Duo processor';
+        Result := 'IntelCore Duo processor';
       41 :
-        Result := 'Intel® Core Duo mobile processor';
+        Result := 'IntelCore Duo mobile processor';
       42 :
-        Result := 'Intel® Core Solo mobile processor';
+        Result := 'IntelCore Solo mobile processor';
       43 :
-        Result := 'Intel® Atom processor';
+        Result := 'IntelAtom processor';
       44 .. 47 :
         Result := 'Available for assignment';
       48 :
@@ -5836,83 +5860,83 @@ begin
       160 :
         Result := 'V30 Family';
       161 :
-        Result := 'Quad-Core Intel® Xeon® processor 3200 Series';
+        Result := 'Quad-Core IntelXeonprocessor 3200 Series';
       162 :
-        Result := 'Dual-Core Intel® Xeon® processor 3000 Series';
+        Result := 'Dual-Core IntelXeonprocessor 3000 Series';
       163 :
-        Result := 'Quad-Core Intel® Xeon® processor 5300 Series';
+        Result := 'Quad-Core IntelXeonprocessor 5300 Series';
       164 :
-        Result := 'Dual-Core Intel® Xeon® processor 5100 Series';
+        Result := 'Dual-Core IntelXeonprocessor 5100 Series';
       165 :
-        Result := 'Dual-Core Intel® Xeon® processor 5000 Series';
+        Result := 'Dual-Core IntelXeonprocessor 5000 Series';
       166 :
-        Result := 'Dual-Core Intel® Xeon® processor LV';
+        Result := 'Dual-Core IntelXeonprocessor LV';
       167 :
-        Result := 'Dual-Core Intel® Xeon® processor ULV';
+        Result := 'Dual-Core IntelXeonprocessor ULV';
       168 :
-        Result := 'Dual-Core Intel® Xeon® processor';
+        Result := 'Dual-Core IntelXeonprocessor';
       169 :
-        Result := 'Quad-Core Intel® Xeon® processor';
+        Result := 'Quad-Core IntelXeonprocessor';
       170 :
-        Result := 'Quad-Core Intel® Xeon® processor';
+        Result := 'Quad-Core IntelXeonprocessor';
       171 :
-        Result := 'Dual-Core Intel® Xeon® processor';
+        Result := 'Dual-Core IntelXeonprocessor';
       172 :
-        Result := 'Dual-Core Intel® Xeon® processor';
+        Result := 'Dual-Core IntelXeonprocessor';
       173 :
-        Result := 'Quad-Core Intel® Xeon® processor';
+        Result := 'Quad-Core IntelXeonprocessor';
       174 :
-        Result := 'Quad-Core Intel® Xeon® processor';
+        Result := 'Quad-Core IntelXeonprocessor';
       175 :
-        Result := 'Multi-Core Intel® Xeon® processor';
+        Result := 'Multi-Core IntelXeonprocessor';
       176 :
-        Result := 'Pentium® III Xeon processor';
+        Result := 'PentiumIII Xeon processor';
       177 :
-        Result := 'Pentium® III Processor with Intel';
+        Result := 'PentiumIII Processor with Intel';
       178 :
-        Result := 'Pentium® 4 Processor';
+        Result := 'Pentium4 Processor';
       179 :
-        Result := 'Intel® Xeon® processor';
+        Result := 'IntelXeonprocessor';
       180 :
         Result := 'AS400 Family';
       181 :
-        Result := 'Intel® Xeon processor MP';
+        Result := 'IntelXeon processor MP';
       182 :
         Result := 'AMD Athlon XP Processor Family';
       183 :
         Result := 'AMD Athlon MP Processor Family';
       184 :
-        Result := 'Intel® Itanium® 2 processor';
+        Result := 'IntelItanium2 processor';
       185 :
-        Result := 'Intel® Pentium® M processor';
+        Result := 'IntelPentiumM processor';
       186 :
-        Result := 'Intel® Celeron® D processor';
+        Result := 'IntelCeleronD processor';
       187 :
-        Result := 'Intel® Pentium® D processor';
+        Result := 'IntelPentiumD processor';
       188 :
-        Result := 'Intel® Pentium® Processor Extreme';
+        Result := 'IntelPentiumProcessor Extreme';
       189 :
-        Result := 'Intel® Core Solo Processor';
+        Result := 'IntelCore Solo Processor';
       190 :
         Result := 'Reserved';
       191 :
-        Result := 'Intel® Core 2 Duo Processor';
+        Result := 'IntelCore 2 Duo Processor';
       192 :
-        Result := 'Intel® Core 2 Solo processor';
+        Result := 'IntelCore 2 Solo processor';
       193 :
-        Result := 'Intel® Core 2 Extreme processor';
+        Result := 'IntelCore 2 Extreme processor';
       194 :
-        Result := 'Intel® Core 2 Quad processor';
+        Result := 'IntelCore 2 Quad processor';
       195 :
-        Result := 'Intel® Core 2 Extreme mobile';
+        Result := 'IntelCore 2 Extreme mobile';
       196 :
-        Result := 'Intel® Core 2 Duo mobile processor';
+        Result := 'IntelCore 2 Duo mobile processor';
       197 :
-        Result := 'Intel® Core 2 Solo mobile processor';
+        Result := 'IntelCore 2 Solo mobile processor';
       198 :
-        Result := 'Intel® Core i7 processor';
+        Result := 'IntelCore i7 processor';
       199 :
-        Result := 'Dual-Core Intel® Celeron® processor';
+        Result := 'Dual-Core IntelCeleronprocessor';
       200 :
         Result := 'IBM390 Family';
       201 :
@@ -5924,9 +5948,9 @@ begin
       204 :
         Result := 'z/Architectur base';
       205 :
-        Result := 'Intel® Core i5 processor';
+        Result := 'IntelCore i5 processor';
       206 :
-        Result := 'Intel® Core i3 processor';
+        Result := 'IntelCore i3 processor';
       207 .. 209 :
         Result := 'Available for assignment';
       210 :
@@ -5938,27 +5962,27 @@ begin
       213 :
         Result := 'VIA Eden Processor Family';
       214 :
-        Result := 'Multi-Core Intel® Xeon® processor';
+        Result := 'Multi-Core IntelXeonprocessor';
       215 :
-        Result := 'Dual-Core Intel® Xeon® processor 3xxx Series';
+        Result := 'Dual-Core IntelXeonprocessor 3xxx Series';
       216 :
-        Result := 'Quad-Core Intel® Xeon® processor 3xxx Series';
+        Result := 'Quad-Core IntelXeonprocessor 3xxx Series';
       217 :
         Result := 'VIA Nano Processor Family';
       218 :
-        Result := 'Dual-Core Intel® Xeon® processor 5xxx Series';
+        Result := 'Dual-Core IntelXeonprocessor 5xxx Series';
       219 :
-        Result := 'Quad-Core Intel® Xeon® processor 5xxx Series';
+        Result := 'Quad-Core IntelXeonprocessor 5xxx Series';
       220 :
         Result := 'Available for assignment';
       221 :
-        Result := 'Dual-Core Intel® Xeon® processor 7xxx Series';
+        Result := 'Dual-Core IntelXeonprocessor 7xxx Series';
       222 :
-        Result := 'Quad-Core Intel® Xeon® processor 7xxx Series';
+        Result := 'Quad-Core IntelXeonprocessor 7xxx Series';
       223 :
-        Result := 'Multi-Core Intel® Xeon® processor 7xxx Series';
+        Result := 'Multi-Core IntelXeonprocessor 7xxx Series';
       224 :
-        Result := 'Multi-Core Intel® Xeon® processor 3400 Series';
+        Result := 'Multi-Core IntelXeonprocessor 3400 Series';
       225 .. 229 :
         Result := 'Available for assignment';
       230 :
